@@ -37,9 +37,10 @@
     }
     .container { max-width: 520px; margin: 0 auto; }
     header { text-align: center; margin: 1.5rem 0 2.5rem; }
-    .logo{
-  width:160px;
-  height:160px;
+    ..logo{
+  width:80%;
+  max-width:320px;
+  height:auto;
   object-fit:contain;
   margin-bottom:1rem;
   filter: drop-shadow(0 8px 15px rgba(0,0,0,0.15));
@@ -101,7 +102,14 @@
 
     @media (max-width: 500px) {
       h1 { font-size: 1.8rem; }
-      .logo { width: 130px; height: 130px; }
+      ..logo{
+  width:80%;
+  max-width:320px;
+  height:auto;
+  object-fit:contain;
+  margin-bottom:1rem;
+  filter: drop-shadow(0 8px 15px rgba(0,0,0,0.15));
+}
       .card { padding: 1.6rem 1.4rem; }
     }
   </style>
