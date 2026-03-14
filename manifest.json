@@ -2,7 +2,7 @@
   "name": "تسجيل دوام العمال",
   "short_name": "الدوام",
   "description": "تطبيق لتسجيل دخول وخروج العمال وحساب الساعات",
-  "start_url": "/index.html",
+  "start_url": "index.html",
   "display": "standalone",
   "background_color": "#e6fffa",
   "theme_color": "#1abc9c",
