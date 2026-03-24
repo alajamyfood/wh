@@ -4,13 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>تسجيل دوام العمال</title>
-
-<link rel="manifest" href="manifest.json">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="icon" href="favicon.ico">
-<link rel="apple-touch-startup-image" href="splash.png">
-
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="icon" href="favicon.ico">
+  <link rel="apple-touch-startup-image" href="splash.png">
   <meta name="theme-color" content="#1abc9c">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -36,22 +34,23 @@
       line-height: 1.6;
     }
     .container { max-width: 520px; margin: 0 auto; }
-    
-        header { 
+
+    header { 
       text-align: center; 
-      margin: 1rem 0 2.2rem; 
+      margin: 1rem 0 2rem; 
     }
-    
-    .logo { 
+
+    .logo {
       width: 420px;
       max-width: 92%;
-      height: auto; 
-      object-fit: contain; 
-      margin: 0 auto 12px auto;
+      height: auto;
+      object-fit: contain;
+      margin-bottom: 12px;
       display: block;
-      padding: 0;
+      margin-left: auto;
+      margin-right: auto;
     }
-    
+
     h1 {
       font-size: 2.1rem;
       background: linear-gradient(90deg, var(--primary), var(--primary-light));
@@ -61,7 +60,6 @@
       margin-bottom: 0.3rem;
     }
 
-    /* باقي الستايل كما هو بدون تغيير */
     .card {
       background: var(--card);
       border-radius: 1.4rem;
@@ -109,9 +107,9 @@
     }
     .success { background: rgba(29,209,161,0.15); color: #0e6655; border-color: rgba(29,209,161,0.4); }
     .error { background: rgba(231,76,60,0.12); color: #c0392b; border-color: rgba(231,76,60,0.35); }
-    
+
     @media (max-width: 500px) {
-      .logo { width: 320px; }
+      .logo { width: 340px; }
       h1 { font-size: 1.85rem; }
       .card { padding: 1.6rem 1.4rem; }
     }
@@ -120,47 +118,34 @@
 <body>
 <div class="container">
   <header>
-  <img src="/logo.png" 
-       alt="logo" 
-       class="logo"
-       onerror="this.style.display='none'; console.log('Logo image not found');">
-  <h1>تسجيل الدوام اليومي</h1>
-</header>
-
+    <img src="logo.png" alt="شعار العمي علاجان" class="logo">
+    <h1>تسجيل الدوام اليومي</h1>
+  </header>
   <div class="card">
     <form id="form">
       <label>اسم العامل</label>
       <input type="text" id="workerName" required placeholder="الاسم الكامل" autocomplete="off">
-
       <label>التاريخ</label>
       <input type="date" id="date" readonly required>
-
       <label>وقت الدخول</label>
       <input type="time" id="entryTime" required>
-
       <label>وقت الخروج (اختياري)</label>
       <input type="time" id="exitTime">
-
       <button type="submit">حفظ السجل</button>
     </form>
-
     <div id="msg" class="msg" style="display:none;"></div>
   </div>
 </div>
 
 <script>
   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyydf2C7LmnBUsVW0Yf-7vl3BumZTSJNUfyJ5zzCLGIi1iOiiP3vc4eS4CW8WhzqsxEmA/exec";
-
   document.getElementById('date').value = new Date().toISOString().split('T')[0];
-
   document.getElementById('form').addEventListener('submit', async e => {
     e.preventDefault();
-
     const msg = document.getElementById('msg');
     msg.style.display = 'block';
     msg.className = 'msg';
     msg.textContent = 'جاري الحفظ...';
-
     const payload = {
       workerName: document.getElementById('workerName').value.trim(),
       date: document.getElementById('date').value,
@@ -168,7 +153,6 @@
       exitTime: document.getElementById('exitTime').value || '',
       user: navigator.userAgent || 'غير معروف'
     };
-
     try {
       await fetch(SCRIPT_URL, {
         method: 'POST',
@@ -176,7 +160,6 @@
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify(payload)
       });
-
       msg.className = 'msg success';
       msg.textContent = 'تم الحفظ بنجاح ✓';
       document.getElementById('form').reset();
@@ -186,10 +169,8 @@
       msg.textContent = 'فشل الاتصال – تحقق من الرابط أو الشيت';
       console.error(err);
     }
-
     setTimeout(() => msg.style.display = 'none', 6000);
   });
 </script>
-
 </body>
 </html>
