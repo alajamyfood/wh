@@ -37,20 +37,19 @@
     }
     .container { max-width: 520px; margin: 0 auto; }
     
-    /* تعديل الـ header ليصبح اللوغو كبير وقريب من العنوان */
-    header { 
+        header { 
       text-align: center; 
-      margin: 1rem 0 2rem; 
+      margin: 1rem 0 2.2rem; 
     }
     
     .logo { 
-      width: 380px;           /* ← هنا حجم اللوغو (غيّره حسب رغبتك) */
+      width: 420px;
+      max-width: 92%;
       height: auto; 
       object-fit: contain; 
-      margin-bottom: 12px;    /* مسافة صغيرة جدًا بين اللوغو والعنوان */
+      margin: 0 auto 12px auto;
       display: block;
-      margin-left: auto;
-      margin-right: auto;
+      padding: 0;
     }
     
     h1 {
@@ -121,9 +120,12 @@
 <body>
 <div class="container">
   <header>
-    <img src="/logo.png" alt="شعار" class="logo">
-    <h1>تسجيل الدوام اليومي</h1>
-  </header>
+  <img src="/logo.png" 
+       alt="logo" 
+       class="logo"
+       onerror="this.style.display='none'; console.log('Logo image not found');">
+  <h1>تسجيل الدوام اليومي</h1>
+</header>
 
   <div class="card">
     <form id="form">
